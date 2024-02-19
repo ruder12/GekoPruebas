@@ -97,6 +97,11 @@
 				<artifactId>jasperreports-fonts</artifactId>
 				<version>6.20.0</version>
 			</dependency>
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-ses</artifactId>
+				<version>1.12.661</version>
+			</dependency>
         </dependencies>
 	<build>
 		<plugins>

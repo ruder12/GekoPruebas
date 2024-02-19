@@ -1,5 +1,6 @@
 package com.Geko.pruebas.Controller;
 
+import com.Geko.pruebas.Configuration.ConfiEmailAWS;
 import com.Geko.pruebas.Dto.InformeHistorial;
 import com.Geko.pruebas.Dto.InventarioDto;
 import com.Geko.pruebas.Service.ServiceImpl.InventarioServiceImple;
@@ -10,10 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -25,6 +24,9 @@ public class ControllerInventario {
 
     @Autowired
     private InventarioServiceImple Serviceinventario;
+
+    @Autowired
+    private ConfiEmailAWS configEmailAWS;
 
     /**
      * Endpoint para obtener una lista de todos los elementos del inventario.
@@ -68,5 +70,22 @@ public class ControllerInventario {
             } catch (Exception e) {
                 return ResponseEntity.notFound().build();
             }
+    }
+
+    /**
+     * envio de email con AWS
+     * @param email
+     * @return
+     */
+    @PostMapping(path = {"/sendEmail"})
+    public ResponseEntity<Boolean> sendEmailAws(@RequestParam(value = "email") String email) {
+        try {
+            if (email != null && email.length() > 0){
+                //configEmailAWS.SendEmail();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 }
